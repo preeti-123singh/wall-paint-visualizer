@@ -1,0 +1,16 @@
+<div class="projects-container">
+  <h2>My Saved Projects</h2>
+
+  <p *ngIf="loading">Loading your projects...</p>
+  <p *ngIf="!loading && projects.length === 0">You haven't saved any projects yet.</p>
+
+  <div class="project-grid" *ngIf="!loading && projects.length > 0">
+    <div class="project-card" *ngFor="let project of projects">
+      <img [src]="project.imageData" alt="Saved visualization" />
+      <div class="project-info">
+        <span class="color-swatch" [style.background-color]="project.color"></span>
+        <span>{{ project.color }}</span>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,112 @@
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f0fe 0%, #f5f0ff 100%);
+  padding: 40px 20px;
+  box-sizing: border-box;
+  font-family: Arial, sans-serif;
+}
+
+.visualizer-container {
+  max-width: 700px;
+  margin: 0 auto;
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  padding: 40px;
+  text-align: center;
+}
+
+.visualizer-container h2 {
+  color: #2c3e50;
+  margin-bottom: 30px;
+  font-size: 28px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 24px;
+  margin-bottom: 24px;
+  flex-wrap: wrap;
+}
+
+.upload-btn {
+  background-color: #4a90d9;
+  color: white;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: background-color 0.2s;
+}
+
+.upload-btn:hover {
+  background-color: #3a7bc8;
+}
+
+.color-picker {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.color-picker label {
+  font-weight: 500;
+  color: #444;
+}
+
+.color-picker input[type="color"] {
+  width: 50px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+}
+
+.hint {
+  color: #777;
+  font-size: 14px;
+  margin-bottom: 12px;
+}
+
+.canvas-wrapper {
+  margin-top: 20px;
+}
+
+.canvas-wrapper canvas {
+  max-width: 100%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  cursor: crosshair;
+}
+
+.save-btn {
+  display: block;
+  margin: 20px auto 0;
+  padding: 12px 32px;
+  background-color: #27ae60;
+  color: white;
+  border: none;
+  border-radius: 6px;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.save-btn:hover:not(:disabled) {
+  background-color: #219150;
+}
+
+.save-btn:disabled {
+  background-color: #b0b0b0;
+  cursor: not-allowed;
+}
+
+p {
+  color: #555;
+  margin-top: 16px;
+}

@@ -1,0 +1,32 @@
+<div class="visualizer-container">
+  <h2>Wall Paint Visualizer</h2>
+
+  <div class="controls">
+    <label class="upload-btn">
+      Upload Wall Photo
+      <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
+    </label>
+
+    <div class="color-picker">
+      <label for="color">Pick a color:</label>
+    <input type="color" id="color" [(ngModel)]="selectedColor" (input)="applyColor(); message=''" />  
+    </div>
+  </div>
+
+  <div class="canvas-wrapper" *ngIf="imageLoaded">
+    <p class="hint">Click and drag over the wall area to select it</p>
+    <canvas
+      #canvasRef
+      (mousedown)="startSelection($event)"
+      (mousemove)="updateSelection($event)"
+      (mouseup)="endSelection()"
+    ></canvas>
+
+    <button class="save-btn" (click)="saveProject()" [disabled]="!hasSelectionMade">
+      Save Project
+    </button>
+  </div>
+
+  <p *ngIf="!imageLoaded">Upload a photo of your wall to get started.</p>
+  <p *ngIf="message">{{ message }}</p>
+</div>
