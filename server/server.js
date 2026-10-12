@@ -22,8 +22,7 @@ app.get('/', (req, res) => {
 mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('MongoDB connected successfully'))
   .catch((err) => console.error('MongoDB connection error:', err));
-
-const PORT = 5000;
+const PORT = process.env.PORT || 5000;
 
 app.post('/api/register', async (req, res) => {
   try {
