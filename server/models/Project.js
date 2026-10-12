@@ -6,6 +6,10 @@ const projectSchema = new mongoose.Schema({
     ref: 'User',
     required: true
   },
+  name: {
+    type: String,
+    default: 'Untitled Project'
+  },
   imageData: {
     type: String,
     required: true
@@ -19,10 +23,14 @@ const projectSchema = new mongoose.Schema({
     y: Number,
     width: Number,
     height: Number
+  },
+  shareId: {
+    type: String,
+    unique: true,
+    sparse: true
   }
 }, { timestamps: true });
-projectSchema.index({ user: 1, createdAt: -1 });
 
-module.exports = mongoose.model('Project', projectSchema);
+projectSchema.index({ user: 1, createdAt: -1 });
 
 module.exports = mongoose.model('Project', projectSchema);

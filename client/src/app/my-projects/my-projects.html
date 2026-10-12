@@ -1,5 +1,10 @@
 <div class="projects-container">
-  <h2>My Saved Projects</h2>
+  <div class="header-row">
+    <h2>My Saved Projects</h2>
+    <a routerLink="/visualizer" class="new-btn">+ Create New</a>
+  </div>
+
+  <p class="share-msg" *ngIf="shareMessage">{{ shareMessage }}</p>
 
   <p *ngIf="loading">Loading your projects...</p>
   <p *ngIf="!loading && projects.length === 0">You haven't saved any projects yet.</p>
@@ -8,8 +13,18 @@
     <div class="project-card" *ngFor="let project of projects">
       <img [src]="project.imageData" alt="Saved visualization" />
       <div class="project-info">
-        <span class="color-swatch" [style.background-color]="project.color"></span>
-        <span>{{ project.color }}</span>
+        <div class="project-text">
+          <strong>{{ project.name || 'Untitled Project' }}</strong>
+          <div class="color-line">
+            <span class="color-swatch" [style.background-color]="project.color"></span>
+            <span>{{ project.color }}</span>
+          </div>
+          <small>{{ project.createdAt | date:'medium' }}</small>
+        </div>
+        <div class="card-actions">
+          <button class="share-btn" (click)="shareProject(project._id)">Share</button>
+          <button class="delete-btn" (click)="deleteProject(project._id)">Delete</button>
+        </div>
       </div>
     </div>
   </div>

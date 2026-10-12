@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ export class Login {
   password = '';
   message = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient, private router: Router) {}
 
   onSubmit() {
     const loginData = {
@@ -27,7 +28,7 @@ export class Login {
       next: (res: any) => {
         this.message = 'Login successful!';
         localStorage.setItem('token', res.token);
-        console.log('Token saved:', res.token);
+        this.router.navigate(['/visualizer']);
       },
       error: (err) => {
         this.message = 'Error: ' + (err.error?.error || 'Login failed');

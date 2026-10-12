@@ -60,3 +60,14 @@ p {
   margin-top: 15px;
   color: #333;
 }
+:host {
+  display: block;
+  min-height: 100vh;
+  background: linear-gradient(135deg, #e8f0fe 0%, #f5f0ff 100%);
+  padding: 40px 20px;
+  box-sizing: border-box;
+}
+
+.login-container {
+  background: white;
+}

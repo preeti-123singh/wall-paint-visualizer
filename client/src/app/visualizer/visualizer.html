@@ -6,13 +6,72 @@
       Upload Wall Photo
       <input type="file" accept="image/*" (change)="onFileSelected($event)" hidden />
     </label>
-
-    <div class="color-picker">
-      <label for="color">Pick a color:</label>
-    <input type="color" id="color" [(ngModel)]="selectedColor" (input)="applyColor(); message=''" />  
-    </div>
   </div>
 
+  <div class="panel">
+    <h3>Choose a paint color</h3>
+    <div class="palette">
+      <button
+        *ngFor="let c of palette"
+        class="swatch"
+        [style.background-color]="c.hex"
+        [class.selected]="selectedColor === c.hex"
+        [title]="c.name"
+        (click)="selectColor(c.hex)"
+      ></button>
+    </div>
+    <p class="color-name">{{ currentColorName() }}</p>
+
+    <div class="custom-color">
+      <label for="color">Or pick any color:</label>
+      <input type="color" id="color" [(ngModel)]="selectedColor" (input)="applyColor(); message=''" />
+    </div>
+
+    <div class="slider-row">
+      <label for="intensity">Intensity: {{ intensity }}%</label>
+      <input type="range" id="intensity" min="10" max="100" [(ngModel)]="intensity" (input)="applyColor()" />
+    </div>
+        <div class="suggestions">
+      <h4>Matching colors (click to try)</h4>
+      <div class="suggest-row">
+        <button *ngFor="let s of suggestions" class="suggest-chip" (click)="selectColor(s.hex)">
+          <span class="suggest-dot" [style.background-color]="s.hex"></span>
+          {{ s.label }}
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="panel estimator">
+    <h3>Paint estimator</h3>
+    <div class="est-row">
+      <label>Wall width
+        <input type="number" min="0" [(ngModel)]="wallWidth" placeholder="0" />
+      </label>
+      <label>Wall height
+        <input type="number" min="0" [(ngModel)]="wallHeight" placeholder="0" />
+      </label>
+      <label>Unit
+        <select [(ngModel)]="unit">
+          <option value="ft">feet</option>
+          <option value="m">meters</option>
+        </select>
+      </label>
+      <label>Coats
+        <select [(ngModel)]="coats">
+          <option [ngValue]="1">1</option>
+          <option [ngValue]="2">2</option>
+          <option [ngValue]="3">3</option>
+        </select>
+      </label>
+    </div>
+
+    <div class="est-result" *ngIf="areaSqM() > 0">
+      <p>Wall area: <strong>{{ areaSqM() | number:'1.1-1' }} m²</strong></p>
+      <p>Paint needed: <strong>{{ litersNeeded() | number:'1.1-1' }} liters</strong></p>
+      <p>Suggested cans: <strong>{{ suggestedCans() }}</strong></p>
+      <small>Estimate based on about 10 m² per liter per coat. Subtract windows and doors for a closer number.</small>
+    </div>
+  </div>
   <div class="canvas-wrapper" *ngIf="imageLoaded">
     <p class="hint">Click and drag over the wall area to select it</p>
     <canvas
@@ -21,10 +80,17 @@
       (mousemove)="updateSelection($event)"
       (mouseup)="endSelection()"
     ></canvas>
-
-    <button class="save-btn" (click)="saveProject()" [disabled]="!hasSelectionMade">
-      Save Project
-    </button>
+    <div class="name-row">
+      <input type="text" [(ngModel)]="projectName" placeholder="Name this project (e.g. Living Room)" maxlength="40" />
+    </div>
+    <div class="action-row">
+      <button class="compare-btn" (click)="toggleOriginal()" [disabled]="!hasSelectionMade">
+        {{ showOriginal ? 'Show Painted' : 'Show Original' }}
+      </button>
+      <button class="save-btn" (click)="saveProject()" [disabled]="!hasSelectionMade">
+        Save Project
+      </button>
+    </div>
   </div>
 
   <p *ngIf="!imageLoaded">Upload a photo of your wall to get started.</p>

@@ -1,0 +1,14 @@
+<div class="shared-container">
+  <p *ngIf="loading">Loading design...</p>
+  <p *ngIf="notFound">This shared design could not be found.</p>
+
+  <div class="shared-card" *ngIf="project">
+    <h2>{{ project.name || 'Untitled Project' }}</h2>
+    <img [src]="project.imageData" alt="Shared wall design" />
+    <div class="meta">
+      <span class="color-swatch" [style.background-color]="project.color"></span>
+      <span>{{ project.color }}</span>
+    </div>
+    <a routerLink="/register" class="cta">Try PaintVision yourself</a>
+  </div>
+</div>

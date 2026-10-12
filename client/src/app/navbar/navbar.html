@@ -1,0 +1,10 @@
+<nav class="navbar">
+  <a routerLink="/home" class="brand">🎨 PaintVision</a>
+  <div class="nav-links">
+    <a routerLink="/visualizer" routerLinkActive="active">Visualizer</a>
+    <a routerLink="/my-projects" routerLinkActive="active">My Projects</a>
+    <a routerLink="/login" routerLinkActive="active" *ngIf="!isLoggedIn()">Login</a>
+    <a routerLink="/register" routerLinkActive="active" *ngIf="!isLoggedIn()">Register</a>
+    <button class="logout-btn" *ngIf="isLoggedIn()" (click)="logout()">Logout</button>
+  </div>
+</nav>
