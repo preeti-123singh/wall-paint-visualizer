@@ -27,7 +27,7 @@ export class Register {
       role: 'homeowner'
     };
 
-    this.http.post('http://localhost:5000/api/register', userData).subscribe({
+    this.http.post('https://wall-paint-visualizer.onrender.com/api/register', userData).subscribe({
       next: () => {
         this.message = 'Registration successful! Taking you to login...';
         this.name = '';

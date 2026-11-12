@@ -20,7 +20,7 @@ export class MyProjects implements OnInit {
   ngOnInit() {
     const token = localStorage.getItem('token');
 
-    this.http.get('http://localhost:5000/api/projects', {
+    this.http.get('https://wall-paint-visualizer.onrender.com/api/projects', {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (res: any) => {
@@ -41,7 +41,7 @@ export class MyProjects implements OnInit {
 
     const token = localStorage.getItem('token');
 
-    this.http.delete(`http://localhost:5000/api/projects/${id}`, {
+    this.http.delete(`https://wall-paint-visualizer.onrender.com/api/projects/${id}`, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: () => {
@@ -58,7 +58,7 @@ export class MyProjects implements OnInit {
   shareProject(id: string) {
     const token = localStorage.getItem('token');
 
-    this.http.post(`http://localhost:5000/api/projects/${id}/share`, {}, {
+    this.http.post(`https://wall-paint-visualizer.onrender.com/api/projects/${id}/share`, {}, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: (res: any) => {

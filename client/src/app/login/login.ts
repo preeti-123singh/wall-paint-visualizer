@@ -24,7 +24,7 @@ export class Login {
       password: this.password
     };
 
-    this.http.post('http://localhost:5000/api/login', loginData).subscribe({
+    this.http.post('https://wall-paint-visualizer.onrender.com/api/login', loginData).subscribe({
       next: (res: any) => {
         this.message = 'Login successful!';
         localStorage.setItem('token', res.token);

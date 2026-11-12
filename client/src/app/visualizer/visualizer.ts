@@ -290,7 +290,7 @@ export class Visualizer {
       selection: this.selection
     };
 
-    this.http.post('http://localhost:5000/api/projects', projectData, {
+    this.http.post('https://wall-paint-visualizer.onrender.com/api/projects', projectData, {
       headers: { Authorization: `Bearer ${token}` }
     }).subscribe({
       next: () => {

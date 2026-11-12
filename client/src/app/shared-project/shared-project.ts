@@ -24,7 +24,7 @@ export class SharedProject implements OnInit {
   ngOnInit() {
     const id = this.route.snapshot.paramMap.get('id');
 
-    this.http.get(`http://localhost:5000/api/shared/${id}`).subscribe({
+    this.http.get(`https://wall-paint-visualizer.onrender.com/api/shared/${id}`).subscribe({
       next: (res: any) => {
         this.project = res.project;
         this.loading = false;
